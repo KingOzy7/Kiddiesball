@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kiddies Football</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="loading-screen" >
+        <p class="text">Please rotate screen to play ▶</p>
+        <div class="landscape-container">
+            <svg  class="svg"  xmlns="http://w3.org" viewBox="0 0 24 24" width="100" height="100" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="rotate(45 12 12)">
+    <path d="M18 13V6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7" />
+    <path d="M14 9V7.5a1.5 1.5 0 0 0-3 0V13" />
+    <path d="M11 11.5V10a1.5 1.5 0 0 0-3 0V13" />
+    <path d="M8 13a1.5 1.5 0 0 0-3 0v4.5A5.5 5.5 0 0 0 10.5 23h4a6.5 6.5 0 0 0 6.5-6.5V13z" />
+  </g>
+</svg>
+
+            <img src="landscape.png" alt="Landscape" class="landscape-image">
+        </div>
+    </div>
+    <div id="game-container" >
+        <!-- Main Rendering Canvas -->
+        <canvas id="gameCanvas"></canvas>
+
+        <!-- Start Screen Overlay -->
+        <div id="start-screen" class="overlay">
+            <div class="modal">
+                <h1>FOOTBALL CHAMPIONS</h1>
+                <p>Elevated 3D Top-Down Match</p>
+                <div class="menu-buttons">
+                    <button id="btn-play" class="btn primary">PLAY MATCH</button>
+                    <button id="btn-how" class="btn secondary">HOW TO PLAY</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- How To Play Modal -->
+        <div id="how-screen" class="overlay hidden">
+            <div class="modal">
+                <h2>HOW TO PLAY</h2>
+                <div class="instructions">
+                    <p><strong>Desktop:</strong> WASD / Arrows to Move | <strong>Shift:</strong> Sprint | <strong>Space:</strong> Shoot | <strong>E:</strong> Pass | <strong>Q:</strong> Switch Player</p>
+                    <p><strong>Mobile:</strong> On-screen Joystick and Action Buttons</p>
+                    <p>Score as many goals as possible before the match timer hits zero!</p>
+                </div>
+                <button id="btn-back" class="btn secondary">BACK TO MENU</button>
+            </div>
+        </div>
+
+        <!-- End Screen Overlay -->
+        <div id="end-screen" class="overlay hidden">
+            <div class="modal">
+                <h1 id="end-title">FULL TIME</h1>
+                <div class="final-score">
+                    <span id="final-red">0</span> - <span id="final-blue">0</span>
+                </div>
+                <p id="end-result-text">Draw Game!</p>
+                <button id="btn-restart-final" class="btn primary">PLAY AGAIN</button>
+            </div>
+        </div>
+
+        <!-- HUD / UI Layer -->
+        <div id="hud" class="hidden">
+            <div class="scoreboard">
+                <div class="team red-team">
+                    <span class="team-name">RED</span>
+                    <span id="score-red" class="score">0</span>
+                </div>
+                <div class="timer-container">
+                    <span id="match-timer">03:00</span>
+                </div>
+                <div class="team blue-team">
+                    <span id="score-blue" class="score">0</span>
+                    <span class="team-name">BLUE</span>
+                </div>
+            </div>
+
+            <div class="hud-top-right">
+                <button id="btn-pause" class="btn icon-btn">⏸</button>
+                <button id="btn-restart" class="btn icon-btn">🔄</button>
+            </div>
+
+            <div class="stamina-bar-container">
+                <div class="stamina-label">STAMINA</div>
+                <div class="stamina-bg">
+                    <div id="stamina-fill" class="stamina-fill"></div>
+                </div>
+            </div>
+
+            <div id="kickoff-banner" class="banner hidden">GOAL!</div>
+        </div>
+
+        <!-- Mobile Controls Overlay -->
+        <div id="mobile-controls">
+            <div id="joystick-zone">
+                <div id="joystick-base">
+                    <div id="joystick-stick"></div>
+                </div>
+            </div>
+            <div id="mobile-buttons">
+                <div class="button-row">
+                    <button id="m-btn-switch" class="m-btn">SWITCH</button>
+                    <button id="m-btn-sprint" class="m-btn">SPRINT</button>
+                </div>
+                <div class="button-row">
+                    <button id="m-btn-pass" class="m-btn action-btn">PASS</button>
+                    <button id="m-btn-shoot" class="m-btn action-btn shoot-btn">SHOOT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
